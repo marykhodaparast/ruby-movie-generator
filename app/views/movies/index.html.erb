@@ -1,0 +1,110 @@
+
+<h1>Ruby Movie Generator</h1>
+
+<%= form_with url: root_path, method: :get, id: "movie-controls" do |form| %>
+  <div style="display: flex; flex-wrap: wrap; gap: 16px; align-items: end; margin-bottom: 24px;">
+
+    <div>
+      <%= form.label :locale, "Language / Region" %><br>
+      <%= form.select :locale,
+        [["English (USA)", "en-US"], ["German (Germany)", "de-DE"]],
+        { selected: @locale },
+        { id: "locale" } %>
+    </div>
+
+    <div>
+      <%= form.label :seed, "Seed" %><br>
+      <%= form.text_field :seed, value: @seed, id: "seed" %>
+    </div>
+
+    <div>
+      <%= form.label :likes, "Average Likes (0–10)" %><br>
+      <%= form.number_field :likes,
+        value: @likes,
+        min: 0,
+        max: 10,
+        step: 0.1,
+        id: "likes" %>
+    </div>
+
+    <div>
+      <%= form.label :reviews, "Reviews per movie" %><br>
+      <%= form.number_field :reviews,
+        value: @review_count,
+        min: 0,
+        step: 1,
+        id: "reviews" %>
+    </div>
+
+  </div>
+<% end %>
+
+<p>Seed: <%= @seed %></p>
+<p>Language: <%= @locale %></p>
+
+<table>
+  <thead>
+    <tr>
+      <th>#</th>
+      <th>Title</th>
+      <th>Actors</th>
+      <th>Year</th>
+      <th>Genre</th>
+      <th>Likes</th>
+      <th>Reviews</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @movies.each do |movie| %>
+      <tr>
+        <td><%= movie[:index] %></td>
+        <td><%= movie[:title] %></td>
+        <td><%= movie[:actors].join(", ") %></td>
+        <td><%= movie[:year] %></td>
+        <td><%= movie[:genre] %></td>
+        <td><%= movie[:likes] %></td>
+        <td>
+          <details>
+            <summary>Show reviews</summary>
+            <ul>
+              <% movie[:reviews].each do |review| %>
+                <li><%= review %></li>
+              <% end %>
+            </ul>
+          </details>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+
+<script>
+  document.addEventListener("turbo:load", () => {
+    const form = document.getElementById("movie-controls");
+
+    if (!form) return;
+
+    const seed = document.getElementById("seed");
+    let timer;
+
+    form.querySelectorAll("select, input[type='number']").forEach((control) => {
+      control.addEventListener("change", () => {
+        if (form.reportValidity()) {
+          form.requestSubmit();
+        }
+      });
+    });
+
+    seed.addEventListener("input", () => {
+      clearTimeout(timer);
+
+      timer = setTimeout(() => {
+        if (form.reportValidity()) {
+          form.requestSubmit();
+        }
+      }, 500);
+    });
+  });
+</script>
+

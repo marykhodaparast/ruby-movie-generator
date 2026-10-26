@@ -1,0 +1,70 @@
+en-US:
+  title_first:
+    - Silent
+    - Hidden
+    - Broken
+    - Midnight
+    - Crimson
+    - Golden
+    - Distant
+    - Forgotten
+  title_second:
+    - Horizon
+    - Promise
+    - Kingdom
+    - Memory
+    - Signal
+    - Shadow
+    - Journey
+    - Storm
+  genres:
+    - Action
+    - Adventure
+    - Comedy
+    - Crime
+    - Drama
+    - Fantasy
+    - Horror
+    - Mystery
+    - Romance
+    - Science Fiction
+    - Thriller
+  reviews:
+    - "A memorable story with impressive performances."
+    - "The atmosphere makes this film stand out."
+    - "An unexpected journey from beginning to end."
+
+de-DE:
+  title_first:
+    - Stille
+    - Verborgene
+    - Zerbrochene
+    - Mitternachts
+    - Goldene
+    - Vergessene
+    - Dunkle
+    - Letzte
+  title_second:
+    - Horizonte
+    - Versprechen
+    - Königreiche
+    - Erinnerungen
+    - Schatten
+    - Reise
+    - Geheimnisse
+    - Sturm
+  genres:
+    - Action
+    - Abenteuer
+    - Komödie
+    - Krimi
+    - Drama
+    - Fantasy
+    - Horror
+    - Liebesfilm
+    - Science-Fiction
+    - Thriller
+  reviews:
+    - "Eine eindrucksvolle Geschichte mit starken Darstellern."
+    - "Die Atmosphäre macht diesen Film besonders."
+    - "Eine überraschende Reise bis zum Ende."
