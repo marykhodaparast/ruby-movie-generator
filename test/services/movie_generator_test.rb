@@ -52,6 +52,7 @@ class MovieGeneratorTest < ActiveSupport::TestCase
     assert_kind_of String, movie[:title]
     assert_equal 3, movie[:actors].length
     assert movie[:year].between?(1970, 2026)
-    assert_includes MovieGenerator::GENRES, movie[:genre]
+    genres = MovieGenerator::DATA.fetch("en-US").fetch("genres")
+    assert_includes genres, movie[:genre]
   end
 end

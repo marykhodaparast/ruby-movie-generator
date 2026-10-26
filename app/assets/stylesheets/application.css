@@ -1,10 +1,166 @@
-/*
- * This is a manifest file that'll be compiled into application.css.
- *
- * With Propshaft, assets are served efficiently without preprocessing steps. You can still include
- * application-wide styles in this file, but keep in mind that CSS precedence will follow the standard
- * cascading order, meaning styles declared later in the document or manifest will override earlier ones,
- * depending on specificity.
- *
- * Consider organizing styles into separate files for maintainability.
- */
+/* Movie Generator */
+.movie-page {
+    max-width: 1200px;
+    margin: 40px auto;
+    padding: 0 24px;
+    color: #1f2937;
+    font-family: Arial, sans-serif;
+}
+
+.movie-page h1 {
+    margin-bottom: 24px;
+    font-size: 32px;
+    color: #111827;
+}
+
+.movie-controls {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: end;
+    gap: 18px;
+    padding: 20px;
+    margin-bottom: 24px;
+    background: #f8fafc;
+    border: 1px solid #e2e8f0;
+    border-radius: 12px;
+}
+
+.movie-controls label {
+    display: inline-block;
+    margin-bottom: 8px;
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.movie-controls select,
+.movie-controls input {
+    min-height: 40px;
+    padding: 8px 10px;
+    border: 1px solid #cbd5e1;
+    border-radius: 7px;
+    background: white;
+    font-size: 14px;
+}
+
+.movie-meta {
+    margin: 8px 0;
+    color: #64748b;
+    font-size: 14px;
+}
+
+.movie-table-wrapper {
+    overflow-x: auto;
+    border: 1px solid #e2e8f0;
+    border-radius: 12px;
+}
+
+.movie-table {
+    width: 100%;
+    border-collapse: collapse;
+    text-align: left;
+    background: white;
+}
+
+.movie-table th {
+    padding: 15px 16px;
+    background: #1e293b;
+    color: white;
+    font-size: 13px;
+    font-weight: 600;
+    white-space: nowrap;
+}
+
+.movie-table td {
+    padding: 14px 16px;
+    border-bottom: 1px solid #e2e8f0;
+    font-size: 14px;
+    line-height: 1.6;
+}
+
+.movie-table tbody tr:nth-child(even) {
+    background: #f8fafc;
+}
+
+.movie-table tbody tr:hover {
+    background: #eff6ff;
+}
+
+.movie-table tbody tr:last-child td {
+    border-bottom: none;
+}
+
+.movie-table details summary {
+    color: #2563eb;
+    cursor: pointer;
+    font-weight: 600;
+}
+
+.movie-table details ul {
+    padding-left: 20px;
+}
+
+.movie-pagination {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    margin: 24px 0;
+}
+
+.movie-pagination a,
+.movie-pagination .current-page {
+    display: inline-flex;
+    min-width: 40px;
+    min-height: 40px;
+    align-items: center;
+    justify-content: center;
+    padding: 8px 12px;
+    border: 1px solid #dbe3ee;
+    border-radius: 8px;
+    font-size: 14px;
+    text-decoration: none;
+}
+
+.movie-pagination a {
+    color: #334155;
+    background: white;
+}
+
+.movie-pagination a:hover {
+    border-color: #2563eb;
+    background: #eff6ff;
+    color: #1d4ed8;
+}
+
+.movie-pagination .current-page {
+    border-color: #2563eb;
+    background: #2563eb;
+    color: white;
+    font-weight: 700;
+}
+
+@media (max-width: 600px) {
+    .movie-page {
+        margin: 24px auto;
+        padding: 0 12px;
+    }
+
+    .movie-page h1 {
+        font-size: 25px;
+    }
+
+    .movie-controls {
+        padding: 14px;
+    }
+
+    .movie-controls>div {
+        width: 100%;
+    }
+
+    .movie-controls select,
+    .movie-controls input {
+        box-sizing: border-box;
+        width: 100%;
+    }
+}

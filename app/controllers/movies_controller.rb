@@ -14,8 +14,20 @@ class MoviesController < ApplicationController
       reviews: @review_count
     )
 
-    @movies = (1..20).map do |index|
+    all_movies = (1..20).map do |index|
       generator.movie(index)
     end
+
+    @per_page = 5
+    @total_pages = (all_movies.size.to_f / @per_page).ceil
+
+    @page = params[:page].to_i
+    @page = 1 if @page < 1
+    @page = [@page, @total_pages].min
+
+    @movies = all_movies.slice(
+      (@page - 1) * @per_page,
+      @per_page
+    ) || []
   end
 end

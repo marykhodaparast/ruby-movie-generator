@@ -1,48 +1,98 @@
 
+<div class="movie-page">
 <h1>Ruby Movie Generator</h1>
 
-<%= form_with url: root_path, method: :get, id: "movie-controls" do |form| %>
-  <div style="display: flex; flex-wrap: wrap; gap: 16px; align-items: end; margin-bottom: 24px;">
+<%= form_with url: root_path, method: :get,
+  id: "movie-controls",
+  class: "movie-controls",
+  style: "display: flex !important; flex-direction: row !important; flex-wrap: nowrap !important; align-items: flex-end; gap: 16px; margin-bottom: 24px; width: 100%;" do |form| %>
 
-    <div>
-      <%= form.label :locale, "Language / Region" %><br>
-      <%= form.select :locale,
-        [["English (USA)", "en-US"], ["German (Germany)", "de-DE"]],
-        { selected: @locale },
-        { id: "locale" } %>
-    </div>
-
-    <div>
-      <%= form.label :seed, "Seed" %><br>
-      <%= form.text_field :seed, value: @seed, id: "seed" %>
-    </div>
-
-    <div>
-      <%= form.label :likes, "Average Likes (0–10)" %><br>
-      <%= form.number_field :likes,
-        value: @likes,
-        min: 0,
-        max: 10,
-        step: 0.1,
-        id: "likes" %>
-    </div>
-
-    <div>
-      <%= form.label :reviews, "Reviews per movie" %><br>
-      <%= form.number_field :reviews,
-        value: @review_count,
-        min: 0,
-        step: 1,
-        id: "reviews" %>
-    </div>
-
+  <div style="display: flex; flex-direction: column; gap: 8px; flex: 1; min-width: 0;">
+    <%= form.label :locale, "Language / Region" %>
+    <%= form.select :locale,
+      [["English (USA)", "en-US"], ["German (Germany)", "de-DE"]],
+      { selected: @locale },
+      { id: "locale", style: "box-sizing: border-box; width: 100%; padding: 9px; border: 1px solid #cbd5e1; border-radius: 7px;" } %>
   </div>
+
+  <div style="display: flex; flex-direction: column; gap: 8px; flex: 1; min-width: 0;">
+    <%= form.label :seed, "Seed" %>
+    <%= form.text_field :seed,
+      value: @seed,
+      id: "seed",
+      style: "box-sizing: border-box; width: 100%; padding: 9px; border: 1px solid #cbd5e1; border-radius: 7px;" %>
+  </div>
+
+  <div style="display: flex; flex-direction: column; gap: 8px; flex: 1; min-width: 0;">
+    <%= form.label :likes, "Average Likes (0–10)" %>
+    <%= form.number_field :likes,
+      value: @likes,
+      min: 0,
+      max: 10,
+      step: 0.1,
+      id: "likes",
+      style: "box-sizing: border-box; width: 100%; padding: 9px; border: 1px solid #cbd5e1; border-radius: 7px;" %>
+  </div>
+
+  <div style="display: flex; flex-direction: column; gap: 8px; flex: 1; min-width: 0;">
+    <%= form.label :reviews, "Reviews per movie" %>
+    <%= form.number_field :reviews,
+      value: @review_count,
+      min: 0,
+      step: 1,
+      id: "reviews",
+      style: "box-sizing: border-box; width: 100%; padding: 9px; border: 1px solid #cbd5e1; border-radius: 7px;" %>
+  </div>
+
 <% end %>
 
-<p>Seed: <%= @seed %></p>
-<p>Language: <%= @locale %></p>
 
-<table>
+
+<p class="movie-meta">Seed: <%= @seed %></p>
+<p class="movie-meta">Language: <%= @locale %></p>
+
+
+<nav class="movie-pagination" aria-label="Movie pages">
+  <% if @page > 1 %>
+    <%= link_to "Previous",
+      root_path(
+        seed: @seed,
+        locale: @locale,
+        likes: @likes,
+        reviews: @review_count,
+        page: @page - 1
+      ) %>
+  <% end %>
+
+  <% (1..@total_pages).each do |page| %>
+    <% if page == @page %>
+      <span class="current-page"><%= page %></span>
+    <% else %>
+      <%= link_to page,
+        root_path(
+          seed: @seed,
+          locale: @locale,
+          likes: @likes,
+          reviews: @review_count,
+          page: page
+        )%>
+    <% end %>
+  <% end %>
+
+  <% if @page < @total_pages %>
+    <%= link_to "Next",
+      root_path(
+        seed: @seed,
+        locale: @locale,
+        likes: @likes,
+        reviews: @review_count,
+        page: @page + 1
+      ) %>
+  <% end %>
+</nav>
+
+<div class="movie-table-wrapper">
+<table class="movie-table">
   <thead>
     <tr>
       <th>#</th>
@@ -77,6 +127,8 @@
     <% end %>
   </tbody>
 </table>
+</div>
+</div>
 
 
 <script>
