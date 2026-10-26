@@ -128,6 +128,26 @@
   </tbody>
 </table>
 </div>
+
+<section class="movie-gallery-section">
+  <h2>Movie Gallery</h2>
+
+  <div
+    id="movie-gallery"
+    class="movie-gallery"
+    data-controller="movie-gallery"
+    data-movie-gallery-url-value="<%= movies_gallery_path(
+      seed: @seed,
+      locale: @locale,
+      likes: @likes,
+      reviews: @review_count,
+      page: 2
+    ) %>">
+
+    <%= render partial: "movies/gallery_movies" %>
+  </div>
+</section>
+
 </div>
 
 

@@ -30,4 +30,30 @@ class MoviesController < ApplicationController
       @per_page
     ) || []
   end
+
+  def gallery
+  @seed = params[:seed].presence || "123456789"
+  @locale = params[:locale].presence || "en-US"
+  @likes = params[:likes].presence || "5"
+  @review_count = params[:reviews].presence || "3"
+
+  generator = MovieGenerator.new(
+    seed: @seed,
+    locale: @locale,
+    likes: @likes,
+    reviews: @review_count
+  )
+
+  @page = [params[:page].to_i, 1].max
+  per_page = 5
+  start_index = (@page - 1) * per_page + 1
+
+  @movies = (start_index..[start_index + per_page - 1, 20].min).map do |index|
+    generator.movie(index)
+  end
+
+  @next_page = @page + 1 if start_index + per_page <= 20
+
+  render partial: "movies/gallery_movies"
+end
 end

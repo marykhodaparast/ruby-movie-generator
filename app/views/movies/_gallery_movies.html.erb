@@ -1,0 +1,43 @@
+<% @movies.each do |movie| %>
+  <article class="movie-card">
+    <div class="movie-card-content">
+      <h2><%= movie[:title] %></h2>
+
+      <p>
+        <strong>Year:</strong>
+        <%= movie[:year] %>
+      </p>
+
+      <p>
+        <strong>Genre:</strong>
+        <%= movie[:genre] %>
+      </p>
+
+      <p>
+        <strong>Actors:</strong>
+        <%= movie[:actors].join(", ") %>
+      </p>
+
+      <p>
+        <strong>Likes:</strong>
+        <%= movie[:likes] %>
+      </p>
+
+      <details>
+        <summary>Show reviews</summary>
+        <ul>
+          <% movie[:reviews].each do |review| %>
+            <li><%= review %></li>
+          <% end %>
+        </ul>
+      </details>
+    </div>
+  </article>
+<% end %>
+
+<% if @next_page %>
+  <div
+    class="gallery-load-more"
+    data-next-page="<%= @next_page %>">
+  </div>
+<% end %>
