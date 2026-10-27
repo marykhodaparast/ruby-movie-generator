@@ -29,6 +29,12 @@ class MoviesController < ApplicationController
       (@page - 1) * @per_page,
       @per_page
     ) || []
+    @next_page = @page + 1 if @page < @total_pages
+    @gallery_movies = (1..5).map do |index|
+  generator.movie(index)
+end
+
+@gallery_next_page = 2
   end
 
   def gallery
@@ -54,6 +60,7 @@ class MoviesController < ApplicationController
 
   @next_page = @page + 1 if start_index + per_page <= 20
 
-  render partial: "movies/gallery_movies"
+  render partial: "movies/gallery_movies",
+       locals: { movies: @movies, next_page: @next_page }
 end
 end

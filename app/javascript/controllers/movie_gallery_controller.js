@@ -14,7 +14,7 @@ export default class extends Controller {
           this.loadNextPage();
         }
       },
-      { rootMargin: "300px" },
+      { rootMargin: "0px" },
     );
 
     this.observeSentinel();

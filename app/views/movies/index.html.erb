@@ -144,7 +144,11 @@
       page: 2
     ) %>">
 
-    <%= render partial: "movies/gallery_movies" %>
+    <%= render partial: "movies/gallery_movies",
+           locals: {
+             movies: @gallery_movies,
+             next_page: @gallery_next_page
+           } %>
   </div>
 </section>
 

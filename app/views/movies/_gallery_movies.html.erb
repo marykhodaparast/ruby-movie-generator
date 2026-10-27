@@ -1,14 +1,12 @@
-<% @movies.each do |movie| %>
+
+<% movies.each do |movie| %>
   <article class="movie-card">
-
     <div class="movie-card-image">
-      
-<img
-  src="https://picsum.photos/seed/movie-<%= movie[:index] %>/800/450"
-  alt="Illustrative image for <%= movie[:title] %>"
-  loading="lazy"
->
-
+      <img
+        src="https://picsum.photos/seed/movie-<%= movie[:index] %>/800/450"
+        alt="Illustrative image for <%= movie[:title] %>"
+        loading="lazy"
+      >
     </div>
 
     <div class="movie-card-content">
@@ -46,9 +44,9 @@
   </article>
 <% end %>
 
-<% if @next_page %>
+<% if next_page %>
   <div
     class="gallery-load-more"
-    data-next-page="<%= @next_page %>">
+    data-next-page="<%= next_page %>">
   </div>
 <% end %>
