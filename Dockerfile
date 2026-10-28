@@ -49,6 +49,8 @@ USER 1000:1000
 
 ENTRYPOINT ["/rails/bin/docker-entrypoint"]
 
+ENV PORT=3000
+
 EXPOSE 3000
 
 CMD ["./bin/thrust", "./bin/rails", "server"]
